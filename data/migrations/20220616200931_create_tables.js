@@ -22,11 +22,13 @@ exports.up = function(knex) {
       tbl.increments('ingredient_id');
       tbl.varchar('ingredient_name', 128).notNullable().unique()
       tbl.interger('quantity').notNullable().unsigned()
-
     })
 };
 
 
 exports.down = function(knex) {
-  
+  return knex.schema
+    .dropTableIfExists('ingredients')
+    .dropTableIfExists('steps')
+    .dropTableIfExists('recipes')
 };
